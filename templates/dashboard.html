@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1><small> Welcome {{session.username}} </small></h1>
+<div style="width:70%;margin:0 auto;text-align:center;">
+  <form action="{{url_for('add')}}" method="POST" class="form" style="margin:100px auto;">
+      <input type="text" class="form-control" placeholder="Make the shot " name="todolist" style="margin:0 10px 10px 0;">
+      <input type="submit" class="btn btn-primary" value="Add item">
+  </form>
+</div>
+
+<table class="table table-striped" style="text-align:center;">
+    <tr>
+      <th>Tasks</th>
+      <th>Action</th>
+    </tr>
+    {% for todo in tasks %}
+      <tr>
+        <td>{{ todo[2] }}</td>
+        <td>
+          <form action="{{url_for('delete',id=todo[0])}}" method="POST" >
+            <input type="hidden" name="_method" value="DONE">
+            <input type="submit" value="Done" class="btn btn-primary">
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

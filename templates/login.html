@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block index %}
+{% if error %}
+  <p class="error"><strong>ERROR:</strong>{{error}}</p>
+{% endif %}
+<div class="container" style="width: 80%;margin:0 auto;text-align=center;">
+  <form action="/login" method="POST" class="form-inline" style="margin:100px auto;">
+      <input type="text" class="form-control" placeholder="Username" name="username" value={{request.form.username}}>
+      <input type="password" class="form-control" placeholder="Password" name="password" value={{request.form.password}}>
+      <input type="submit" class="btn btn-primary" value="Sign In">
+  </form>
+</div>
+{% endblock %}

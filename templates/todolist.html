@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container" style="margin:50px auto;">
+  <table class="table table-striped" style="text-align:center;">
+      <tr style="border:2px solid blue;color:lightgreen;">
+        <th>Tasks</th>
+      </tr>
+      {% for todo in tasks %}
+        <tr>
+          <td><strong>{{ todo[2] }}</strong></td>
+        </tr>
+      {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <title>Todo List</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="{{url_for('static',filename='src/js/bootstrap.min.js')}}"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="{{url_for('static',filename='Images/favicon.ico')}}" >
+</head>
+<header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if session.logged_in %}
+    <a class="navbar-brand" href="/dashboard">TodoListApp</a>
+    {% else %}
+    <a class="navbar-brand" href="">TodoListApp</a>
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% if session.logged_in %}
+        <li class="nav-item">
+          <a class="nav-link" href="/todolistitems">Todo List </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/credits">Credits</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      {% if session["logged_in"] %}
+				<li style="margin-right:40px;">
+					<a href="/logout"> Sign Out <span class="caret"></span></a>
+				</li>
+      {% else %}
+      <li style="margin-right:40px;">
+        <a href="/login" > Sign In <span class="caret"></span></a>
+      </li>
+      <li style="margin-right:40px;">
+        <a href="/register">Register</a>
+      </li>
+      {% endif %}
+			</ul>
+  </nav>
+</header>
+<body>
+  {% block register %}
+  {% endblock %}
+
+  {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          <ul style="list-style-type:none;">
+             {% for message in messages %}
+             <li style="margin:10px;">
+               <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <strong> {{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </li>
+             {% endfor %}
+          </ul>
+       {% endif %}
+  {% endwith %}
+
+  {% block body%}
+  {% endblock %}
+
+  {% block index %}
+  {% endblock %}
+
+  {% block todolist %}
+  {% endblock %}
+
+  {% block homepage %}
+  {% endblock %}
+
+
+</body>
+</html>
