@@ -8,11 +8,13 @@
   <script src="{{url_for('static',filename='src/js/bootstrap.min.js')}}"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
   <link href="https://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <meta charset="utf-8">
   <link rel="shortcut icon" href="{{url_for('static',filename='Images/favicon.ico')}}" >
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='src/footer.css')}}">
 </head>
 <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         {% if session.logged_in %}
     <a class="navbar-brand" href="/dashboard">TodoListApp</a>
     {% else %}
@@ -28,9 +30,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/todolistitems">Todo List </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/credits">Credits</a>
-        </li>
         {% endif %}
       </ul>
     </div>
@@ -38,14 +37,14 @@
     <ul class="nav navbar-nav navbar-right">
       {% if session["logged_in"] %}
 				<li style="margin-right:40px;">
-					<a href="/logout"> Sign Out <span class="caret"></span></a>
+					<a href="/logout" style="color:#ffffff;"> Sign Out <span class="caret"></span></a>
 				</li>
       {% else %}
       <li style="margin-right:40px;">
-        <a href="/login" > Sign In <span class="caret"></span></a>
+        <a href="/login" style="color:#ffffff;"> Sign In <span class="caret"></span></a>
       </li>
       <li style="margin-right:40px;">
-        <a href="/register">Register</a>
+        <a href="/register" style="color:#ffffff;">Register</a>
       </li>
       {% endif %}
 			</ul>
@@ -72,7 +71,7 @@
        {% endif %}
   {% endwith %}
 
-  {% block body%}
+  {% block body %}
   {% endblock %}
 
   {% block index %}
@@ -84,6 +83,25 @@
   {% block homepage %}
   {% endblock %}
 
-
+  <section id="footer" style="background-color: #343a40!important;">
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+  					<ul class="list-unstyled list-inline social text-center">
+  						<li class="list-inline-item"><a href="https://www.facebook.com/SudharshanShanmugasundaram" target="_blank"><i class="fa fa-facebook"></i></a></li>
+  						<li class="list-inline-item"><a href="https://plus.google.com/u/0/102534154094732006029" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+  					</ul>
+  				</div>
+  				</hr>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+  					<p class="h6"><a class="text-green ml-2" href="https://sudharshanshanmugasundaram.github.io/" target="_blank">Iceberg</a></p>
+  					<p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://sudharshanshanmugasundaram.github.io/" target="_blank">Iceberg</a></p>
+  				</div>
+  				</hr>
+  			</div>
+  		</div>
+  	</section>
 </body>
 </html>
