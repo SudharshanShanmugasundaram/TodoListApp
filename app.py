@@ -117,6 +117,9 @@ def dashboard():
 def add():
     if request.method=='POST':
         task=request.form['todolist']
+        if task=="":
+            flash("Add a task")
+            return redirect(url_for('dashboard'))
         c,conn=connection()
         c.execute("INSERT INTO todolist (username,task) VALUES (%s,%s)",(thwart(session['username']),thwart(task)))
         conn.commit()
