@@ -76,8 +76,10 @@ def login_page():
             c,conn=connection()
             username=c.execute("SELECT * FROM users WHERE username=(%s)",(thwart(request.form['username']),))
             if username==0:
-                error=" Username doesn't exist"
+                #error=" Username doesn't exist"
+                flash("Username doesn't exist")
                 return render_template('login.html',error=error)
+
             data=c.fetchone()[2]
 
             if sha256_crypt.verify(request.form['password'],data):
@@ -85,7 +87,8 @@ def login_page():
                 session['username']=request.form['username']
                 return redirect(url_for('dashboard'))
             else:
-                error=" Incorrect Password"
+                # error=" Incorrect Password"
+                flash("Incorrect Password")
                 return render_template('login.html',error=error)
             c.close()
             conn.close()

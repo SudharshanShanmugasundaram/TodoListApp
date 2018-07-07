@@ -51,8 +51,6 @@
   </nav>
 </header>
 <body>
-  {% block register %}
-  {% endblock %}
 
   {% with messages = get_flashed_messages() %}
        {% if messages %}
@@ -70,6 +68,9 @@
           </ul>
        {% endif %}
   {% endwith %}
+
+  {% block register %}
+  {% endblock %}
 
   {% block body %}
   {% endblock %}
